@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ohrozene_zvierata>
+    <zviera>
+        <meno>Lev</meno>
+        <popis>
+            Lev (Panthera leo) je veľká šelma žijúca v subsaharskej Afrike a v niektorých oblastiach Ázie. Je označený ako zraniteľný druh.
+        </popis>
+        <populacia>25 000 - 30 000 jedincov</populacia>
+        <stav>zraniteľný</stav>
+    </zviera>
+    <zviera>
+        <meno>Slon</meno>
+        <popis>
+            Slon (Loxodonta africana) je najväčší suchozemský cicavec žijúci v Afrike. Je kriticky ohrozený druh.
+        </popis>
+        <populacia>400 000 - 500 000 jedincov</populacia>
+        <stav>kriticky ohrozený</stav>
+    </zviera>
+    <zviera>
+        <meno>Žirafa</meno>
+        <popis>
+            Žirafa (Giraffa camelopardalis) je najvyšší suchozemský cicavec na svete, žijúci v savanách Afriky. Je ohrozený druh.
+        </popis>
+        <populacia>do 97 500 jedincov</populacia>
+        <stav>ohrozený</stav>
+    </zviera>
+</ohrozene_zvierata>

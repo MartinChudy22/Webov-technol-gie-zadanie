@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styl.css">
+	<title>stranka</title>
+</head>
+<body>
+	<section class="top">
+	<header class="header">
+		<a href="WTDLetny_semester.html"><img src="logo-social.png" alt="logo" width="15%" height="15%"></a>
+		Zvieratá
+		<div id="clock"></div>
+		<script src="script.js"></script>
+	</header>
+	<ul>
+		<li><a href="WTDLetny_semester.html">Domov</a></li>
+		<li><a href="ohrozene_druhy.html">Ohrozené druhy</a></li>
+		<li><a href="graficky_navrh.html">Grafický návrh</a></li>
+		<li><a href="about.html">o nás</a></li>
+		<li><a class="active" href="formular.html">formulár</a></li>
+	</ul>
+    <h2>Formulár o ohrozených zvieratách</h2>
+    <form id="endangered-animals-form" action="#" method="post">
+        <div class="form-group">
+            <label for="animal-name">Meno zvieraťa:</label><br>
+            <input type="text" id="animal-name" name="animal-name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="animal-description">Popis zvieraťa:</label><br>
+            <textarea id="animal-description" name="animal-description" rows="4" cols="30" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <p>Stav ohrozenia:</p>
+            <input type="radio" id="endangerment-low" name="endangerment" value="Malé">
+            <label for="endangerment-low">Malé</label><br>
+            <input type="radio" id="endangerment-critical" name="endangerment" value="Kritické">
+            <label for="endangerment-critical">Kritické</label><br>
+            <input type="radio" id="endangerment-not-endangered" name="endangerment" value="Nie je ohrozené">
+            <label for="endangerment-not-endangered">Nie je ohrozené</label>
+        </div>
+
+        <div class="form-group">
+            <label for="animal-in-slovakia">Žije zviera na Slovensku:</label>
+            <input type="checkbox" id="animal-in-slovakia" name="animal-in-slovakia" value="Áno">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Odoslať</button>
+        </div>
+    </form>
+
+    <div id="error-messages"></div>
+
+    <script>
+        const form = document.getElementById('endangered-animals-form');
+        const errorMessages = document.getElementById('error-messages');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            errorMessages.innerHTML = '';
+
+            let isValid = true;
+
+            // Validácia pola "Meno zvieraťa"
+            const animalNameField = document.getElementById('animal-name');
+            if (animalNameField.value.trim() === '') {
+                displayErrorMessage('Pole "Meno zvieraťa" je povinné.');
+                isValid = false;
+            }
+
+            // Validácia pola "Popis zvieraťa"
+            const animalDescriptionField = document.getElementById('animal-description');
+            if (animalDescriptionField.value.trim() === '') {
+                displayErrorMessage('Pole "Popis zvieraťa" je povinné.');
+                isValid = false;
+            }
+
+            // Validácia radio buttonov pre "Stav ohrozenia"
+            const endangermentRadios = document.querySelectorAll('input[name="endangerment"]');
+            let endangermentSelected = false;
+            endangermentRadios.forEach(function(radio) {
+                if (radio.checked) {
+                    endangermentSelected = true;
+                }
+            });
+            if (!endangermentSelected) {
+                displayErrorMessage('Vyberte jeden zo stavov ohrozenia.');
+                isValid = false;
+            }
+
+            // Validácia pola "Email"
+            const emailField = document.getElementById('email');
+            if (!isValidEmail(emailField.value.trim())) {
+                displayErrorMessage('Zadajte platnú emailovú adresu.');
+                isValid = false;
+            }
+
+            // Ak všetky polia sú správne vyplnené, môže sa formulár odoslať
+            if (isValid) {
+                alert('Formulár bol úspešne odoslaný.');
+                form.reset(); // Vynulovanie formulára
+            }
+        });
+
+        function isValidEmail(email) {
+            // Jednoduchá validácia emailovej adresy pomocou regulárneho výrazu
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        function displayErrorMessage(message) {
+            const errorMessage = document.createElement('p');
+            errorMessage.className = 'error-message';
+            errorMessage.textContent = message;
+            errorMessages.appendChild(errorMessage);
+        }
+    </script>
+</body>
+</html>
